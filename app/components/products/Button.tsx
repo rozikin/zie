@@ -30,10 +30,10 @@ const Button:React.FC<ButtonProps> = ( {
     onClick={onClick}
     disabled = {disabled}
     className={`
-    disabled: opacity-70
-    disabled: cursor-not-allowed
+    disabled:opacity-70
+    disabled:cursor-not-allowed
     rounded-md
-    hover: opacity-80
+    hover:opacity-80
     transition
     w-full
     border-slate-700
@@ -48,7 +48,8 @@ const Button:React.FC<ButtonProps> = ( {
 
     ${custom? custom: ""}
 
-    `}>
+    `}
+    >
         {Icon && <Icon size={24} />}
         {label}
     </button>

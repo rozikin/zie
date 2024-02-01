@@ -25,7 +25,6 @@ export const CartContextProvider = (props: Props) => {
       } else {
         updateCart = [product];
       }
-
       return updateCart;
 
     })
