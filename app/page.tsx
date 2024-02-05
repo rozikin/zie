@@ -1,7 +1,6 @@
 import HomeBanner from "./components/HomeBanner"
 import Container from "./components/Container"
 import { products } from "@/utils/products"
-import { truncateText } from "@/utils/truncateText"
 import ProductCard from "./components/products/ProductCard"
 
 const Home: React.FC = () => {
