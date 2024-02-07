@@ -7,13 +7,13 @@ import RegisterForm from './RegisterForm'
 
 const Register = () => {
     return (
-        <div>
-            <Container>
-                <FormWrap>
-                    <RegisterForm />
-                </FormWrap>
-            </Container>
-        </div>
+
+        <Container>
+            <FormWrap>
+                <RegisterForm />
+            </FormWrap>
+        </Container>
+
     )
 }
 

@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from "react"
 
 const FormWrap = ({ children }: { children: ReactNode }) => {
   return (
-    <div className='
+    <div className="
     min-h-fit
     h-full
     flex
@@ -10,9 +10,9 @@ const FormWrap = ({ children }: { children: ReactNode }) => {
     justify-center
     pb-12
     pt-24
-    '>
+    ">
 
-      <div className='max-w-[650px]
+      <div className="max-w-[650px]
         w-full
         flex
         flex-col
@@ -23,7 +23,7 @@ const FormWrap = ({ children }: { children: ReactNode }) => {
         rounded-md
         p-4
         md:p-8
-        '>
+        ">
         {children}
       </div>
     </div>
