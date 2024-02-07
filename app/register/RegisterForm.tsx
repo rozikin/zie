@@ -1,17 +1,20 @@
 'use client'
-import React, { useState } from 'react'
+import {useState} from 'react'
 import Heading from '../components/Heading'
 import Input from '../components/inputs/Input'
-import { register } from 'module'
 import { FieldValues, useForm, SubmitHandler } from 'react-hook-form'
 import Button from '../components/products/Button'
 import Link from 'next/link'
 import { AiOutlineGoogle } from 'react-icons/ai'
+import axios from "axios"
+import toast from 'react-hot-toast'
+import { signIn } from "next-auth/react"
+import { useRouter } from 'next/navigation'
 
 
 const RegisterForm = () => {
 
-    const [isLoading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
             name: '',
@@ -20,9 +23,37 @@ const RegisterForm = () => {
         }
     })
 
+    const router = useRouter();
+
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        setLoading(true)
-        console.log(data)
+        setIsLoading(true)
+
+        axios.post('/api/register', data).then(() => {
+            toast.success("Account Created")
+
+            signIn('credentials', {
+                email: data.email,
+                password: data.password,
+                redirect: false,
+
+            }).then((callback) => {
+
+                if (callback?.ok) {
+                    router.push('/cart')
+                    router.refresh();
+                    toast.success('Logged In')
+
+                }
+
+                if (callback?.error) {
+                    toast.error(callback.error)
+                }
+
+            })
+        }).catch(()=> toast.error("something went wrong!"))
+        .finally(()=>{
+            setIsLoading(false);
+        })
     }
 
 
@@ -30,7 +61,7 @@ const RegisterForm = () => {
         <>
             <Heading title="Sign Up for E-Shop" />
             <hr className='bg-slate-300 w-full h-px' />
-            <Button outline label="Sign up with google" icon={AiOutlineGoogle} onClick={()=>{}} />
+            <Button outline label="Sign up with google" icon={AiOutlineGoogle} onClick={() => { }} />
             <Input
                 id="name"
                 label="name"
